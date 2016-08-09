@@ -10,6 +10,6 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	server.RegisterPostProcessor(&PostProcessor{})
+	server.RegisterPostProcessor(new(ami-volume-permissions.PostProcessor{})
 	server.Serve()
 }
