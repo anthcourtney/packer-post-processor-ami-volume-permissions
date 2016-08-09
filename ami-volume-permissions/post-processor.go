@@ -1,4 +1,4 @@
-package main
+package ami-volume-permissions
 
 import (
 	"errors"
