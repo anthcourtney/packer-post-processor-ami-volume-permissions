@@ -1,7 +1,7 @@
 package main
 
 import (
-  "github.com/anthcourtney/packer-post-processor-ami-volume-permissions/ami-volume-permissions"
+  "github.com/anthcourtney/packer-post-processor-ami-volume-permissions/copy-volume-permissions"
   "github.com/mitchellh/packer/packer/plugin"
 )
 
@@ -10,6 +10,6 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	server.RegisterPostProcessor(new(ami-volume-permissions.PostProcessor{})
+	server.RegisterPostProcessor(new(copyvolumepermissions.PostProcessor{}))
 	server.Serve()
 }

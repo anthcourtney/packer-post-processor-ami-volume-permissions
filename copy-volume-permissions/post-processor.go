@@ -1,4 +1,4 @@
-package ami-volume-permissions
+package copyvolumepermissions
 
 import (
 	"errors"
