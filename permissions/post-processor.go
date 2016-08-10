@@ -8,7 +8,6 @@ import (
   "github.com/aws/aws-sdk-go/aws/session"
   "github.com/aws/aws-sdk-go/service/ec2"
   "github.com/mitchellh/packer/builder/amazon/common"
-  "github.com/mitchellh/packer/common"
   "github.com/mitchellh/packer/helper/config"
   "github.com/mitchellh/packer/packer"
   "github.com/mitchellh/packer/template/interpolate"
