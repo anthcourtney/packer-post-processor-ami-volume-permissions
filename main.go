@@ -1,15 +1,15 @@
 package main
 
 import (
-  "github.com/anthcourtney/packer-post-processor-ami-volume-permissions/copy-volume-permissions"
   "github.com/mitchellh/packer/packer/plugin"
+  "github.com/anthcourtney/packer-post-processor-ami-volume-permissions/permissions"
 )
 
 func main() {
-	server, err := plugin.Server()
-	if err != nil {
-		panic(err)
-	}
-	server.RegisterPostProcessor(new(copyvolumepermissions.PostProcessor{}))
-	server.Serve()
+  server, err := plugin.Server()
+  if err != nil {
+    panic(err)
+  }
+  server.RegisterPostProcessor(new(permissions.PostProcessor))
+  server.Serve()
 }

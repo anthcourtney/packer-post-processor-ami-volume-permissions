@@ -1,16 +1,17 @@
-package copyvolumepermissions
+package permissions
 
 import (
-	"errors"
-	"fmt"
-	"regexp"
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/aws/aws-sdk-go/service/ec2"
-	"github.com/mitchellh/packer/builder/amazon/common"
-	"github.com/mitchellh/packer/helper/config"
-	"github.com/mitchellh/packer/packer"
-	"github.com/mitchellh/packer/template/interpolate"
+  "errors"
+  "fmt"
+  "regexp"
+  "github.com/aws/aws-sdk-go/aws"
+  "github.com/aws/aws-sdk-go/aws/session"
+  "github.com/aws/aws-sdk-go/service/ec2"
+  "github.com/mitchellh/packer/builder/amazon/common"
+  "github.com/mitchellh/packer/common"
+  "github.com/mitchellh/packer/helper/config"
+  "github.com/mitchellh/packer/packer"
+  "github.com/mitchellh/packer/template/interpolate"
 )
 
 // Config is the post-processor configuration with interpolation supported.
@@ -26,32 +27,32 @@ import (
 // See Specifying Amazon Credentials (https://www.packer.io/docs/builders/amazon.html) for details on these config
 // parameters.
 type Config struct {
-	common.AccessConfig `mapstructure:",squash"`
+  common.AccessConfig `mapstructure:",squash"`
 
-	ctx interpolate.Context
+  ctx interpolate.Context
 }
 
 // PostProcessor holds the Config object.
 type PostProcessor struct {
-	config Config
+  config Config
 }
 
 // Configure sets the Config object with configuration values from the Packer template.
 func (p *PostProcessor) Configure(raws ...interface{}) error {
 
-	err := config.Decode(&p.config, &config.DecodeOpts{
-		Interpolate:        true,
-		InterpolateContext: &p.config.ctx,
-		InterpolateFilter: &interpolate.RenderFilter{
-			Exclude: []string{},
-		},
-	}, raws...)
+  err := config.Decode(&p.config, &config.DecodeOpts{
+    Interpolate:        true,
+    InterpolateContext: &p.config.ctx,
+    InterpolateFilter: &interpolate.RenderFilter{
+      Exclude: []string{},
+    },
+  }, raws...)
 
-	if err != nil {
-		return err
-	}
+  if err != nil {
+    return err
+  }
 
-	return nil
+  return nil
 }
 
 // PostProcess parses the AMI ID from the artifact ID, retrieves the launch permissions and block devices for the AMI.
